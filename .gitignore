@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+*.env
+.venv/
+.uv-cache/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.py[cod]
+.DS_Store
+
+/docs/development-plan.md
+/docs/check-list.md
