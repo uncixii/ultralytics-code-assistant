@@ -5,7 +5,10 @@ description = "Source-grounded assistant for the Ultralytics YOLO codebase"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "pymongo>=4.15,<5",
     "python-dotenv>=1.1,<2",
+    "sentence-transformers>=3,<6",
+    "transformers>=4.41,<5",
 ]
 
 [dependency-groups]

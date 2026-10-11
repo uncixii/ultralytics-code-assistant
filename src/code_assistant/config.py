@@ -18,6 +18,7 @@ class Settings:
     openrouter_api_key: str | None
     openrouter_model: str | None
     embedding_model: str
+    embedding_model_revision: str
 
     def require_mongodb_uri(self) -> str:
         if not self.mongodb_uri:
@@ -42,4 +43,8 @@ def load_settings(env_file: Path | None = None) -> Settings:
         openrouter_api_key=value("OPENROUTER_API_KEY") or None,
         openrouter_model=value("OPENROUTER_MODEL") or None,
         embedding_model=value("EMBEDDING_MODEL", "jinaai/jina-embeddings-v2-base-code"),
+        embedding_model_revision=value(
+            "EMBEDDING_MODEL_REVISION",
+            "516f4baf13dec4ddddda8631e019b5737c8bc250",
+        ),
     )
