@@ -8,6 +8,8 @@ from pathlib import Path
 
 from dotenv import dotenv_values
 
+from code_assistant.errors import PublicError
+
 
 @dataclass(frozen=True, repr=False)
 class Settings:
@@ -22,7 +24,9 @@ class Settings:
 
     def require_mongodb_uri(self) -> str:
         if not self.mongodb_uri:
-            raise ValueError("MONGODB_URI is required for Atlas operations")
+            raise PublicError(
+                "MONGODB_URI is required for Atlas operations. Set it in .env, then retry."
+            )
         return self.mongodb_uri
 
 

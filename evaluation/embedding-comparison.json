@@ -1,0 +1,703 @@
+{
+  "questions": "questions.jsonl",
+  "runs": [
+    {
+      "source_revision": "3d75949c41f78a2c6763eb347ac7a94793098e89",
+      "embedding_model": "jinaai/jina-embeddings-v2-base-code@516f4baf13dec4ddddda8631e019b5737c8bc250",
+      "index": {
+        "passed": true,
+        "directories": {
+          "ultralytics/models": {
+            "files": 85,
+            "nonempty_lines": 18792,
+            "uncovered_lines": 0
+          },
+          "ultralytics/engine": {
+            "files": 8,
+            "nonempty_lines": 7047,
+            "uncovered_lines": 0
+          },
+          "ultralytics/data": {
+            "files": 11,
+            "nonempty_lines": 7972,
+            "uncovered_lines": 0
+          }
+        },
+        "source_files": 104,
+        "stored_chunks": 1812,
+        "chunk_types": {
+          "module": 119,
+          "function": 197,
+          "class_context": 198,
+          "method": 1298
+        },
+        "embedding_dimensions": 768,
+        "max_embedding_input_tokens": 795,
+        "issues": []
+      },
+      "retrieval": {
+        "positive_questions": 14,
+        "file_hits_at_5": 13,
+        "method_hits_at_5": 13,
+        "sufficient_source": 12,
+        "partial_source": 1,
+        "misses": 1,
+        "negative_questions": 1,
+        "correct_empty_results": 1,
+        "cases": [
+          {
+            "id": "predict-preprocess",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "BasePredictor.preprocess — ultralytics/engine/predictor.py:L183-L207",
+              "ClassificationPredictor.preprocess — ultralytics/models/yolo/classify/predict.py:L78-L86",
+              "YOLOEVPDetectPredictor.preprocess — ultralytics/models/yolo/yoloe/predict.py:L59-L66",
+              "ClassificationPredictor.pre_transform — ultralytics/models/yolo/classify/predict.py:L74-L76",
+              "Predictor.preprocess — ultralytics/models/sam/predict.py:L114-L146"
+            ]
+          },
+          {
+            "id": "stream-inference",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "BasePredictor.stream_inference — ultralytics/engine/predictor.py:L321-L368",
+              "BasePredictor.stream_inference — ultralytics/engine/predictor.py:L369-L436",
+              "BasePredictor.stream_inference — ultralytics/engine/predictor.py:L437-L456",
+              "SAM2VideoPredictor.propagate_in_video_preflight — ultralytics/models/sam/predict.py:L1126-L1167",
+              "BasePredictor.__call__ — ultralytics/engine/predictor.py:L250-L268"
+            ]
+          },
+          {
+            "id": "model-predict",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "Model.predict — ultralytics/engine/model.py:L566-L568",
+              "Model.predict — ultralytics/engine/model.py:L532-L565",
+              "Model.predict — ultralytics/engine/model.py:L491-L531",
+              "Predictor.get_model — ultralytics/models/sam/predict.py:L506-L510",
+              "YOLOE.predict — ultralytics/models/yolo/model.py:L565-L567"
+            ]
+          },
+          {
+            "id": "model-train",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "Model.train — ultralytics/engine/model.py:L849-L886",
+              "Model.train — ultralytics/engine/model.py:L887-L913",
+              "Model.train — ultralytics/engine/model.py:L807-L848",
+              "BaseTrainer._do_train — ultralytics/engine/trainer.py:L675-L705",
+              "BaseTrainer._model_train — ultralytics/engine/trainer.py:L756-L762"
+            ]
+          },
+          {
+            "id": "trainer-setup",
+            "outcome": "sufficient_source",
+            "file_rank": 2,
+            "symbol_rank": 3,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "Model.train — ultralytics/engine/model.py:L887-L913",
+              "BaseTrainer._model_train — ultralytics/engine/trainer.py:L756-L762",
+              "BaseTrainer.setup_model — ultralytics/engine/trainer.py:L869-L902",
+              "BaseTrainer._load_checkpoint_state — ultralytics/engine/trainer.py:L1067-L1082",
+              "Model.__init__ — ultralytics/engine/model.py:L135-L141"
+            ]
+          },
+          {
+            "id": "dataset-image",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "BaseDataset.load_image — ultralytics/data/base.py:L298-L321",
+              "BaseDataset.load_image — ultralytics/data/base.py:L249-L297",
+              "RTDETRDataset.load_image — ultralytics/models/rtdetr/val.py:L37-L54",
+              "ClassificationDataset.imread — ultralytics/data/dataset.py:L1298-L1301",
+              "SemanticDataset.load_image — ultralytics/data/dataset.py:L1041-L1043"
+            ]
+          },
+          {
+            "id": "detect-postprocess",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "DetectionPredictor.postprocess — ultralytics/models/yolo/detect/predict.py:L76-L81",
+              "ClassificationPredictor.postprocess — ultralytics/models/yolo/classify/predict.py:L88-L106",
+              "SemanticSegmentationPredictor.postprocess — ultralytics/models/yolo/semantic/predict.py:L87-L89",
+              "DetectionPredictor.postprocess — ultralytics/models/yolo/detect/predict.py:L33-L75",
+              "SAM3VideoSemanticPredictor.postprocess — ultralytics/models/sam/predict.py:L2733-L2741"
+            ]
+          },
+          {
+            "id": "detect-build-dataset",
+            "outcome": "sufficient_source",
+            "file_rank": 4,
+            "symbol_rank": 4,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "WorldTrainerFromScratch.get_dataset — ultralytics/models/yolo/world/train_world.py:L121-L160",
+              "WorldTrainerFromScratch.get_dataset — ultralytics/models/yolo/world/train_world.py:L161-L181",
+              "BaseTrainer.get_dataset — ultralytics/engine/trainer.py:L835-L867",
+              "DetectionTrainer.build_dataset — ultralytics/models/yolo/detect/train.py:L64-L76",
+              "BaseTrainer.build_dataset — ultralytics/engine/trainer.py:L954-L956"
+            ]
+          },
+          {
+            "id": "segment-postprocess",
+            "outcome": "sufficient_source",
+            "file_rank": 2,
+            "symbol_rank": 2,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "SemanticSegmentationPredictor.postprocess — ultralytics/models/yolo/semantic/predict.py:L87-L89",
+              "SegmentationPredictor.postprocess — ultralytics/models/yolo/segment/predict.py:L48-L66",
+              "Predictor.postprocess — ultralytics/models/sam/predict.py:L556-L569",
+              "SemanticSegmentationPredictor.postprocess — ultralytics/models/yolo/semantic/predict.py:L41-L86",
+              "DetectionPredictor.postprocess — ultralytics/models/yolo/detect/predict.py:L76-L81"
+            ]
+          },
+          {
+            "id": "classify-preprocess",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "ClassificationPredictor.preprocess — ultralytics/models/yolo/classify/predict.py:L78-L86",
+              "ClassificationPredictor.postprocess — ultralytics/models/yolo/classify/predict.py:L88-L106",
+              "Predictor.preprocess — ultralytics/models/sam/predict.py:L114-L146",
+              "YOLOEVPDetectPredictor.preprocess — ultralytics/models/yolo/yoloe/predict.py:L59-L66",
+              "BasePredictor.preprocess — ultralytics/engine/predictor.py:L183-L207"
+            ]
+          },
+          {
+            "id": "detect-collate",
+            "outcome": "miss",
+            "file_rank": null,
+            "symbol_rank": null,
+            "missing_required_lines": [
+              [
+                430,
+                432
+              ],
+              [
+                434,
+                435
+              ],
+              [
+                437,
+                458
+              ]
+            ],
+            "selected_sources": [
+              "DetectionTrainer.build_dataset — ultralytics/models/yolo/detect/train.py:L64-L76",
+              "DetectionTrainer.auto_batch — ultralytics/models/yolo/detect/train.py:L245-L256",
+              "ClassificationTrainer.build_dataset — ultralytics/models/yolo/classify/train.py:L112-L129",
+              "ClassificationValidator.build_dataset — ultralytics/models/yolo/classify/val.py:L150-L152",
+              "DetectionValidator._prepare_batch — ultralytics/models/yolo/detect/val.py:L181-L206"
+            ],
+            "vector_diagnostic": {
+              "limit": 50,
+              "returned": 50,
+              "expected_method_matches": []
+            }
+          },
+          {
+            "id": "natural-image-load",
+            "outcome": "partial_source",
+            "file_rank": 1,
+            "symbol_rank": 5,
+            "missing_required_lines": [
+              [
+                298,
+                308
+              ],
+              [
+                310,
+                317
+              ],
+              [
+                319,
+                319
+              ],
+              [
+                321,
+                321
+              ]
+            ],
+            "selected_sources": [
+              "BaseDataset.cache_images — ultralytics/data/base.py:L323-L339",
+              "ClassificationDataset.cache_images — ultralytics/data/dataset.py:L1303-L1319",
+              "BaseDataset._ImageCache.__getstate__ — ultralytics/data/base.py:L95-L102",
+              "BaseDataset._ImageCache — ultralytics/data/base.py:L74-L76",
+              "BaseDataset.load_image — ultralytics/data/base.py:L249-L297"
+            ],
+            "vector_diagnostic": {
+              "limit": 12,
+              "returned": 12,
+              "expected_method_matches": [
+                {
+                  "rank": 5,
+                  "source": "ultralytics/data/base.py:L249-L297"
+                },
+                {
+                  "rank": 7,
+                  "source": "ultralytics/data/base.py:L298-L321"
+                }
+              ]
+            }
+          },
+          {
+            "id": "natural-detection-results",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "DetectionPredictor.construct_result — ultralytics/models/yolo/detect/predict.py:L119-L132",
+              "ClassificationPredictor.preprocess — ultralytics/models/yolo/classify/predict.py:L78-L86",
+              "SegmentationPredictor.construct_result — ultralytics/models/yolo/segment/predict.py:L86-L111",
+              "YOLOEVPDetectPredictor.preprocess — ultralytics/models/yolo/yoloe/predict.py:L59-L66",
+              "DetectionPredictor.construct_results — ultralytics/models/yolo/detect/predict.py:L103-L117"
+            ]
+          },
+          {
+            "id": "natural-training-entry",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "Model.train — ultralytics/engine/model.py:L849-L886",
+              "Model.train — ultralytics/engine/model.py:L887-L913",
+              "BaseTrainer.setup_model — ultralytics/engine/trainer.py:L869-L902",
+              "BaseTrainer.setup_model — ultralytics/engine/trainer.py:L903-L903",
+              "MultiTrainer.train — ultralytics/engine/trainer.py:L1291-L1349"
+            ]
+          },
+          {
+            "id": "outside-nn",
+            "outcome": "expected_empty",
+            "file_rank": null,
+            "symbol_rank": null,
+            "missing_required_lines": [],
+            "selected_sources": []
+          }
+        ]
+      }
+    },
+    {
+      "source_revision": "3d75949c41f78a2c6763eb347ac7a94793098e89",
+      "embedding_model": "codefuse-ai/C2LLM-0.5B@bd6d0ddb29f0c9a3d0f14281aedc9f940bb8d67a",
+      "index": {
+        "passed": true,
+        "directories": {
+          "ultralytics/models": {
+            "files": 85,
+            "nonempty_lines": 18792,
+            "uncovered_lines": 0
+          },
+          "ultralytics/engine": {
+            "files": 8,
+            "nonempty_lines": 7047,
+            "uncovered_lines": 0
+          },
+          "ultralytics/data": {
+            "files": 11,
+            "nonempty_lines": 7972,
+            "uncovered_lines": 0
+          }
+        },
+        "source_files": 104,
+        "stored_chunks": 1749,
+        "chunk_types": {
+          "module": 119,
+          "function": 191,
+          "class_context": 196,
+          "method": 1243
+        },
+        "embedding_dimensions": 896,
+        "max_embedding_input_tokens": 770,
+        "issues": []
+      },
+      "retrieval": {
+        "positive_questions": 14,
+        "file_hits_at_5": 14,
+        "method_hits_at_5": 13,
+        "sufficient_source": 9,
+        "partial_source": 4,
+        "misses": 1,
+        "negative_questions": 1,
+        "correct_empty_results": 1,
+        "cases": [
+          {
+            "id": "predict-preprocess",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "BasePredictor.preprocess — ultralytics/engine/predictor.py:L183-L207",
+              "BasePredictor.pre_transform — ultralytics/engine/predictor.py:L225-L244",
+              "Predictor.preprocess — ultralytics/models/sam/predict.py:L114-L146",
+              "ClassificationPredictor.preprocess — ultralytics/models/yolo/classify/predict.py:L78-L86",
+              "Predictor.pre_transform — ultralytics/models/sam/predict.py:L148-L173"
+            ]
+          },
+          {
+            "id": "stream-inference",
+            "outcome": "partial_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [
+              [
+                378,
+                379
+              ],
+              [
+                381,
+                383
+              ],
+              [
+                385,
+                387
+              ],
+              [
+                389,
+                394
+              ],
+              [
+                396,
+                399
+              ],
+              [
+                401,
+                421
+              ],
+              [
+                423,
+                425
+              ],
+              [
+                427,
+                435
+              ],
+              [
+                437,
+                447
+              ],
+              [
+                449,
+                450
+              ],
+              [
+                452,
+                456
+              ]
+            ],
+            "selected_sources": [
+              "BasePredictor.stream_inference — ultralytics/engine/predictor.py:L321-L377",
+              "BasePredictor.__call__ — ultralytics/engine/predictor.py:L250-L268",
+              "BasePredictor.predict_cli — ultralytics/engine/predictor.py:L270-L288",
+              "SAM3VideoSemanticPredictor._run_single_frame_inference — ultralytics/models/sam/predict.py:L2743-L2785",
+              "SAM2VideoPredictor.propagate_in_video_preflight — ultralytics/models/sam/predict.py:L1126-L1175"
+            ],
+            "vector_diagnostic": {
+              "limit": 12,
+              "returned": 12,
+              "expected_method_matches": [
+                {
+                  "rank": 1,
+                  "source": "ultralytics/engine/predictor.py:L321-L377"
+                },
+                {
+                  "rank": 9,
+                  "source": "ultralytics/engine/predictor.py:L446-L456"
+                }
+              ]
+            }
+          },
+          {
+            "id": "model-predict",
+            "outcome": "partial_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [
+              [
+                566,
+                568
+              ]
+            ],
+            "selected_sources": [
+              "Model.predict — ultralytics/engine/model.py:L532-L565",
+              "Model.predict — ultralytics/engine/model.py:L491-L531",
+              "YOLOE.predict — ultralytics/models/yolo/model.py:L469-L503",
+              "Model.__call__ — ultralytics/engine/model.py:L143-L171",
+              "Predictor.get_model — ultralytics/models/sam/predict.py:L506-L510"
+            ],
+            "vector_diagnostic": {
+              "limit": 12,
+              "returned": 12,
+              "expected_method_matches": [
+                {
+                  "rank": 6,
+                  "source": "ultralytics/engine/model.py:L532-L565"
+                }
+              ]
+            }
+          },
+          {
+            "id": "model-train",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "Model.train — ultralytics/engine/model.py:L849-L886",
+              "Model.train — ultralytics/engine/model.py:L807-L848",
+              "Model.train — ultralytics/engine/model.py:L887-L913",
+              "BaseTrainer._model_train — ultralytics/engine/trainer.py:L756-L762",
+              "BaseTrainer._do_train — ultralytics/engine/trainer.py:L466-L530"
+            ]
+          },
+          {
+            "id": "trainer-setup",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 2,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "BaseTrainer._model_train — ultralytics/engine/trainer.py:L756-L762",
+              "BaseTrainer.setup_model — ultralytics/engine/trainer.py:L869-L903",
+              "BaseTrainer.get_model — ultralytics/engine/trainer.py:L942-L944",
+              "BaseTrainer.set_model_attributes — ultralytics/engine/trainer.py:L964-L966",
+              "WorldTrainer.get_model — ultralytics/models/yolo/world/train.py:L70-L97"
+            ]
+          },
+          {
+            "id": "dataset-image",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "BaseDataset.load_image — ultralytics/data/base.py:L249-L297",
+              "RTDETRDataset.load_image — ultralytics/models/rtdetr/val.py:L37-L54",
+              "BaseDataset.load_image — ultralytics/data/base.py:L298-L321",
+              "SemanticDataset.load_image — ultralytics/data/dataset.py:L1041-L1043",
+              "ClassificationDataset.imread — ultralytics/data/dataset.py:L1298-L1301"
+            ]
+          },
+          {
+            "id": "detect-postprocess",
+            "outcome": "partial_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [
+              [
+                77,
+                79
+              ],
+              [
+                81,
+                81
+              ]
+            ],
+            "selected_sources": [
+              "DetectionPredictor.postprocess — ultralytics/models/yolo/detect/predict.py:L33-L75",
+              "RTDETRPredictor.postprocess — ultralytics/models/rtdetr/predict.py:L35-L68",
+              "RTDETRPredictor.postprocess — ultralytics/models/rtdetr/predict.py:L69-L69",
+              "RTDETRValidator.postprocess — ultralytics/models/rtdetr/val.py:L111-L140",
+              "BasePredictor.postprocess — ultralytics/engine/predictor.py:L246-L248"
+            ],
+            "vector_diagnostic": {
+              "limit": 12,
+              "returned": 12,
+              "expected_method_matches": [
+                {
+                  "rank": 1,
+                  "source": "ultralytics/models/yolo/detect/predict.py:L33-L75"
+                }
+              ]
+            }
+          },
+          {
+            "id": "detect-build-dataset",
+            "outcome": "miss",
+            "file_rank": 4,
+            "symbol_rank": null,
+            "missing_required_lines": [
+              [
+                64,
+                65
+              ],
+              [
+                67,
+                70
+              ],
+              [
+                72,
+                76
+              ]
+            ],
+            "selected_sources": [
+              "BaseTrainer.build_dataset — ultralytics/engine/trainer.py:L954-L956",
+              "RTDETRTrainer.build_dataset — ultralytics/models/rtdetr/train.py:L65-L91",
+              "BaseTrainer.get_dataset — ultralytics/engine/trainer.py:L835-L867",
+              "DetectionTrainer.get_dataloader — ultralytics/models/yolo/detect/train.py:L78-L105",
+              "DetectionTrainer._build_train_pipeline — ultralytics/models/yolo/detect/train.py:L207-L213"
+            ],
+            "vector_diagnostic": {
+              "limit": 50,
+              "returned": 50,
+              "expected_method_matches": [
+                {
+                  "rank": 6,
+                  "source": "ultralytics/models/yolo/detect/train.py:L64-L76"
+                }
+              ]
+            }
+          },
+          {
+            "id": "segment-postprocess",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "SegmentationPredictor.postprocess — ultralytics/models/yolo/segment/predict.py:L48-L66",
+              "SemanticSegmentationPredictor.postprocess — ultralytics/models/yolo/semantic/predict.py:L41-L86",
+              "SemanticSegmentationValidator.postprocess — ultralytics/models/yolo/semantic/val.py:L89-L110",
+              "RTDETRPredictor.postprocess — ultralytics/models/rtdetr/predict.py:L69-L69",
+              "SegmentationValidator.postprocess — ultralytics/models/yolo/segment/val.py:L91-L106"
+            ]
+          },
+          {
+            "id": "classify-preprocess",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "ClassificationPredictor.preprocess — ultralytics/models/yolo/classify/predict.py:L78-L86",
+              "BasePredictor.preprocess — ultralytics/engine/predictor.py:L183-L207",
+              "ClassificationPredictor.pre_transform — ultralytics/models/yolo/classify/predict.py:L74-L76",
+              "BasePredictor.pre_transform — ultralytics/engine/predictor.py:L225-L244",
+              "Predictor.pre_transform — ultralytics/models/sam/predict.py:L148-L173"
+            ]
+          },
+          {
+            "id": "detect-collate",
+            "outcome": "sufficient_source",
+            "file_rank": 5,
+            "symbol_rank": 5,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "BaseTrainer.build_dataset — ultralytics/engine/trainer.py:L954-L956",
+              "BaseValidator.build_dataset — ultralytics/engine/validator.py:L381-L383",
+              "BaseTrainer.preprocess_batch — ultralytics/engine/trainer.py:L918-L920",
+              "DetectionTrainer.preprocess_batch — ultralytics/models/yolo/detect/train.py:L107-L137",
+              "YOLODataset.collate_fn — ultralytics/data/dataset.py:L430-L458"
+            ]
+          },
+          {
+            "id": "natural-image-load",
+            "outcome": "partial_source",
+            "file_rank": 2,
+            "symbol_rank": 2,
+            "missing_required_lines": [
+              [
+                298,
+                308
+              ],
+              [
+                310,
+                317
+              ],
+              [
+                319,
+                319
+              ],
+              [
+                321,
+                321
+              ]
+            ],
+            "selected_sources": [
+              "ClassificationDataset.cache_images — ultralytics/data/dataset.py:L1303-L1319",
+              "BaseDataset.load_image — ultralytics/data/base.py:L249-L297",
+              "BaseDataset.cache_images — ultralytics/data/base.py:L323-L339",
+              "BaseDataset.cache_images_to_disk — ultralytics/data/base.py:L341-L349",
+              "RTDETRDataset.load_image — ultralytics/models/rtdetr/val.py:L37-L54"
+            ],
+            "vector_diagnostic": {
+              "limit": 12,
+              "returned": 12,
+              "expected_method_matches": [
+                {
+                  "rank": 2,
+                  "source": "ultralytics/data/base.py:L249-L297"
+                },
+                {
+                  "rank": 7,
+                  "source": "ultralytics/data/base.py:L298-L321"
+                }
+              ]
+            }
+          },
+          {
+            "id": "natural-detection-results",
+            "outcome": "sufficient_source",
+            "file_rank": 1,
+            "symbol_rank": 1,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "DetectionPredictor.construct_result — ultralytics/models/yolo/detect/predict.py:L119-L132",
+              "DetectionPredictor.construct_results — ultralytics/models/yolo/detect/predict.py:L103-L117",
+              "SAM3SemanticPredictor.postprocess — ultralytics/models/sam/predict.py:L2353-L2390",
+              "DetectionPredictor.postprocess — ultralytics/models/yolo/detect/predict.py:L33-L75",
+              "RTDETRPredictor.postprocess — ultralytics/models/rtdetr/predict.py:L35-L68"
+            ]
+          },
+          {
+            "id": "natural-training-entry",
+            "outcome": "sufficient_source",
+            "file_rank": 3,
+            "symbol_rank": 3,
+            "missing_required_lines": [],
+            "selected_sources": [
+              "WorldTrainer.get_model — ultralytics/models/yolo/world/train.py:L70-L97",
+              "BaseTrainer._model_train — ultralytics/engine/trainer.py:L756-L762",
+              "Model.train — ultralytics/engine/model.py:L887-L913",
+              "Model.train — ultralytics/engine/model.py:L849-L886",
+              "BaseTrainer.get_model — ultralytics/engine/trainer.py:L942-L944"
+            ]
+          },
+          {
+            "id": "outside-nn",
+            "outcome": "expected_empty",
+            "file_rank": null,
+            "symbol_rank": null,
+            "missing_required_lines": [],
+            "selected_sources": []
+          }
+        ]
+      }
+    }
+  ]
+}

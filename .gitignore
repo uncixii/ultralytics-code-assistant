@@ -4,11 +4,22 @@
 *.env
 .venv/
 .uv-cache/
+.uv-tools/
+.hf-cache/
+.embedding-comparison/
+# Keep one current evaluation; ignore local experiment outputs.
+/evaluation/*.json
+/evaluation/*.jsonl
+!/evaluation/questions.jsonl
+!/evaluation/results.json
+!/evaluation/embedding-comparison.json
+!/evaluation/llm-comparison.json
+/.evaluation-archive/
+/.chunk-inspection/
+/.local/
+.source/
 __pycache__/
 .pytest_cache/
 .ruff_cache/
 *.py[cod]
 .DS_Store
-
-/docs/development-plan.md
-/docs/check-list.md
