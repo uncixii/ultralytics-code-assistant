@@ -49,6 +49,12 @@ def show_answer(text: str, status: str) -> None:
     if status == "insufficient_evidence":
         st.info(text)
     else:
+        if status == "unverified":
+            st.info(
+                "The model did not include a recognized answer-status marker. "
+                "This alone does not mean the answer is incorrect; "
+                "consider reviewing it alongside the source references below."
+            )
         st.markdown(text)
 
 

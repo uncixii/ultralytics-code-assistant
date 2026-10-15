@@ -24,7 +24,7 @@ def app_environment(monkeypatch):
     return source
 
 
-def test_status_fallback_displays_answer_and_history_without_warning(monkeypatch, app_environment):
+def test_status_fallback_displays_gentle_note_in_answer_and_history(monkeypatch, app_environment):
     source = app_environment
     responses = iter(["Returns one. [1]", "ANSWERED: Still returns one. [1]"])
     calls = []
@@ -47,6 +47,9 @@ def test_status_fallback_displays_answer_and_history_without_warning(monkeypatch
     app.chat_input[0].set_value("What does run return?").run()
     assert not app.exception
     assert not app.warning
+    assert len(app.info) == 1
+    assert "does not mean the answer is incorrect" in app.info[0].value
+    assert app.session_state.messages[-1]["status"] == "unverified"
     assert any(item.value == "Returns one. [1]" for item in app.markdown)
     assert any(item.value == source.code.rstrip("\n") for item in app.code)
 
@@ -55,6 +58,9 @@ def test_status_fallback_displays_answer_and_history_without_warning(monkeypatch
     assert not app.warning
     assert any(item.value == "Returns one. [1]" for item in app.markdown)
     assert any(item.value == "Still returns one. [1]" for item in app.markdown)
+    assert len(app.info) == 1
+    assert "source references below" in app.info[0].value
+    assert app.session_state.messages[-1]["status"] == "answered"
     assert len(calls) == 2
 
 

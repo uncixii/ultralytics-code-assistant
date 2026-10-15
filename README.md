@@ -2,6 +2,13 @@
 
 A source-grounded Q&A system for Ultralytics YOLO that combines AST-guided Python chunking, code embeddings and exact symbol lookup in MongoDB Atlas. Retrieved source supplies the evidence for OpenRouter explanations, with file-and-line citations tied to a fixed repository revision. The retrieval and answer-validation pipeline is implemented directly in Python, using uv, SentenceTransformers and Streamlit, without a pre-built RAG framework.
 
+## Executive Summary
+
+- **Problem:** explain YOLO behavior with inspectable source evidence, including the conditions that change that behavior.
+- **Solution:** AST-guided chunks, Jina code embeddings and exact symbol lookup in MongoDB Atlas supply source to an OpenRouter LLM; Streamlit displays answers with file-and-line references. The pipeline is implemented directly in Python without a pre-built RAG framework.
+- **Demo:** [five example questions and screenshots](#example-questions-and-demo) · [run locally](#run).
+- **Key results:** all 104 target Python files preserved; Jina selected all required source for **12/14** development questions versus C2LLM's **9/14**. Dots completed **9/9** comparison requests versus Laguna's **4/9**. Five manually reviewed demo answers explained the requested behavior correctly; four had accurate supporting citations. These small development samples do not establish unseen-question accuracy. [Experiments and limitations ↓](#evaluation-of-the-current-version)
+
 ## Run
 
 Install Python 3.11+, Git and [uv](https://docs.astral.sh/uv/), then open a terminal in this repository's root. Create a [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) cluster supporting Vector Search, give a database user read/write and search-index permissions, and allow your IP in Network Access. Obtain an OpenRouter API key.
@@ -109,7 +116,7 @@ Questions and code use the same pinned encoder, normalized 768-dimensional vecto
 
 A candidate found in step 1 can be excluded in step 3. Displayed chat history is not sent to the model; each question uses its own selected source and references link to the pinned commit.
 
-The model is asked to start with `STATUS: ANSWERED` or `STATUS: INSUFFICIENT_EVIDENCE` and cite key claims. Missing or unknown status still displays the response text; empty answers, invalid reference numbers, answered responses without citations and truncated/API responses produce errors. Manual review checks whether the cited code supports each factual claim.
+The model is asked to start with `STATUS: ANSWERED` or `STATUS: INSUFFICIENT_EVIDENCE` and cite key claims. Missing or unknown status still displays the response text with a gentle note to review the source references; this format deviation alone does not imply an incorrect answer. Empty answers, invalid reference numbers, answered responses without citations and truncated/API responses produce errors. Manual review checks whether the cited code supports each factual claim.
 
 ### Why these models?
 
@@ -157,6 +164,8 @@ Laguna's Q&A figure is [Poolside's evaluation](https://poolside.ai/blog/introduc
 | Median time to complete response | 12.15s | 7.76s |
 | Observed output delivery | 45.61 tokens/s | 71.65 tokens/s |
 
+“Complete responses” counts requests that returned a full response without errors or truncation; it does not measure answer correctness.
+
 Timings compare the four matching pairs with complete responses from both models, excluding retrieval. Tokens/s includes network delivery and each model's token accounting. The UI previews streamed text and validates the completed response before saving it to chat history. Saved format-check outcomes predate the current display fallback.
 
 **Dots was selected for more consistent response availability and faster completion; Laguna delivered first text sooner.** Runtime uses one attempt, reasoning disabled, a 2,000-token output limit and a 60-second timeout, with no automatic fallback. Change `OPENROUTER_MODEL` to use another supported free endpoint; [Laguna's free endpoint](https://openrouter.ai/poolside/laguna-s-2.1:free) announces retirement on October 31, 2026.
@@ -193,7 +202,7 @@ All **104 target files** were chunked and stored. All **1,812 Atlas chunks** mat
 
 ### Did retrieval select enough code?
 
-Of 14 answerable questions, **12 received all labelled source, one received part and one missed it**. The explicit out-of-scope question correctly returned no source.
+The 161M-parameter encoder supplied all labelled required source for 12 of 14 development questions. One question received only part of the required source, and one missed it. The explicit out-of-scope question correctly returned no source.
 
 | Question group | All labelled source selected | Partial | Miss |
 | --- | ---: | ---: | ---: |
@@ -206,8 +215,6 @@ The two incomplete cases are:
 - **Partial — image read and resize:** the relevant `load_image` pieces rank 5 and 7 in the 12 vector candidates. The final five-piece selection omits L298–321, containing resize and return logic.
 
 These development questions label required source lines, allowing the same cases to compare different chunk boundaries. Unseen questions are planned for final validation.
-
-The 161M-parameter encoder supplied complete evidence for 12 of 14 questions, while a free LLM produced the useful explanations in the demo examples below. These results are encouraging given the modest model configuration. This provides a practical baseline: separate source-preservation and retrieval checks expose chunking and selection failures, and the same evaluation can measure improvements from stronger models.
 
 ### Example questions and demo
 
@@ -229,8 +236,14 @@ Expand references to inspect the retrieved code, as shown in [source evidence](a
 
 ### Any critical missing features?
 
-- **Retrieve all source needed to explain a behavior.** The retrieval failures above show two gaps: finding methods from natural-language questions and selecting all required parts of long methods. Next steps address these through keyword retrieval, reranking and reading missing pieces within the source budget.
-- **Reliable generation with the current model.** `dots-studio/dots-3-note-preview:free` occasionally misreads supplied conditions, omits status headers or cites the wrong source piece despite sufficient evidence. Compare suitable replacements on identical source, balancing answer quality and instruction following with first-token latency, completion time, throughput, cost and endpoint availability; validate the chosen configuration through the full RAG before adoption.
+1. **Broader end-to-end evaluation.** Seeing a lightweight combination of a 161M-parameter code embedding model and a free LLM produce useful explanations was encouraging. It gives me some confidence that this is a promising baseline worth exploring further.
+
+   However, the current retrieval and generation results come from a small set of development questions and selected demonstrations. The indexing checks establish source coverage, and the retrieval tests show which labelled evidence was selected for those questions, but these checks do not tell us how reliably the complete system answers unseen questions. A few encouraging examples cannot establish its overall performance.
+
+   A broader, human-reviewed end-to-end evaluation is therefore the most important next step. It should use an independent set of unseen questions reflecting realistic user needs and cover retrieval completeness, answer correctness, citation support, cross-file reasoning, appropriate abstention and response reliability. This would provide a stronger basis for deciding whether the current system and model combination works reliably and which improvements help.
+
+2. **Retrieve all source needed to explain a behavior.** The retrieval failures above show two gaps: finding methods from natural-language questions and selecting all required parts of long methods. Next steps address these through keyword retrieval, reranking and reading missing pieces within the source budget.
+3. **Reliable generation with the current model.** `dots-studio/dots-3-note-preview:free` occasionally misreads supplied conditions, omits status headers or cites the wrong source piece despite sufficient evidence. Compare suitable replacements on identical source, balancing answer quality and instruction following with first-token latency, completion time, throughput, cost and endpoint availability; validate the chosen configuration through the full RAG before adoption.
 
 ### What could be improved with more time?
 
