@@ -1,6 +1,7 @@
 # Ultralytics Code Assistant
 
-A source-grounded Q&A system for Ultralytics YOLO that combines AST-guided Python chunking, code embeddings and exact symbol lookup in MongoDB Atlas. Retrieved source supplies the evidence for OpenRouter explanations, with file-and-line citations tied to a fixed repository revision. The retrieval and answer-validation pipeline is implemented directly in Python, using uv, SentenceTransformers and Streamlit, without a pre-built RAG framework.
+A source-grounded code Q&A prototype that helps developers understand Ultralytics YOLO through explanations linked to specific source files and lines.
+It combines AST-guided Python chunking, code embeddings, and exact symbol lookup in MongoDB Atlas to retrieve relevant code from a fixed repository revision. OpenRouter generates explanations from the retrieved evidence, while response-format and citation-reference checks help identify invalid outputs. Built with uv, SentenceTransformers, and Streamlit, the core RAG pipeline is implemented directly in Python without a pre-built RAG framework.
 
 ## Executive Summary
 
